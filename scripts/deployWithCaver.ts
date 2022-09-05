@@ -31,7 +31,7 @@ async function main() {
 
   // Transaction 전송
   console.log("Deploying contracts with the account:", keyring.address);
-  const fragments = [...Token.interface.fragments];
+
   const contractInstance = new caver.contract(abi);
   const result = await contractInstance
     .deploy({
