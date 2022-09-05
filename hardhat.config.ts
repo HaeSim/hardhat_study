@@ -1,24 +1,38 @@
-import { HardhatUserConfig } from 'hardhat/config';
-import '@nomicfoundation/hardhat-toolbox';
-import '@nomiclabs/hardhat-ethers';
+import "dotenv/config";
+import "@typechain/hardhat";
+import "@nomiclabs/hardhat-ethers";
+import "@nomiclabs/hardhat-waffle";
+import "hardhat-deploy-ethers";
+
+import { HardhatUserConfig } from "hardhat/types";
 
 const config: HardhatUserConfig = {
   solidity: {
-    version: '0.8.13',
+    version: "0.8.13",
     settings: {
-      evmVersion: 'istanbul',
+      optimizer: {
+        enabled: true,
+        runs: 200,
+      },
     },
   },
   networks: {
-    baobab: {
-      url: 'https://kaikas.baobab.klaytn.net:8651',
-      chainId: 1001,
-      accounts: {
-        initialIndex: 0,
-        mnemonic: '', //privateKey
-        accountsBalance: '100000000000000',
-      },
+    hardhat: {},
+    cypress: {
+      url: process.env.CYPRESS_URL,
+      accounts: [process.env.PRIVATE_KEY || ""],
+      chainId: 8217,
+      gas: 8500000,
     },
+    baobab: {
+      url: process.env.BAOBAB_URL,
+      accounts: [process.env.PRIVATE_KEY || ""],
+      chainId: 1001,
+      gas: 8500000,
+    },
+  },
+  mocha: {
+    timeout: 100000,
   },
 };
 
