@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npx hardhat test",
     "compile": "npx hardhat compile",
-    "run": "npx hardhat run"
+    "script": "npx hardhat run"
   },
   "dependencies": {
     "@ethersproject/abi": "^5.7.0",

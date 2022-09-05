@@ -3,8 +3,9 @@ import "@nomiclabs/hardhat-waffle";
 import { config, ethers } from "hardhat";
 import { HttpNetworkUserConfig } from "hardhat/src/types/config";
 import Caver, { AbiItem } from "caver-js";
-import { tokenToString } from "typescript";
-import { ContractFactory } from "ethers";
+
+const jsonData = require("../artifacts/contracts/Token.sol/Token.json");
+
 async function main() {
   // network 셋팅 및 caver 연결
   const network = config.networks[
@@ -25,14 +26,16 @@ async function main() {
 
   // 컨트랙트 불러오기
   const Token = await ethers.getContractFactory("Token");
-
   const jsonData = require("../artifacts/contracts/Token.sol/Token.json");
   const { abi } = jsonData;
+  const abiData = Token.interface.functions;
+  console.log("abi : ", abi);
+  console.log("abiData : ", abiData);
+  const contractInstance = new caver.contract(abi);
 
   // Transaction 전송
   console.log("Deploying contracts with the account:", keyring.address);
 
-  const contractInstance = new caver.contract(abi);
   const result = await contractInstance
     .deploy({
       data: Token.bytecode,
