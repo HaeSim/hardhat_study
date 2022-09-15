@@ -55,7 +55,7 @@ contract Todos {
 /**
  * 아래와 같이 외부에서 import하여 사용도 가능합니다.
  */
-import "./StructDeclaration.sol";
+import "./a15_StructDeclaration.sol";
 
 contract TodosImport {
     // An array of 'Todo' structs

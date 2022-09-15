@@ -49,7 +49,7 @@ contract Enum {
 /**
  * 이런 식으로 밖에서 별도 파일로 분리한 Enum을 불러와서 사용도 가능합니다.
  */
-import "./EnumDeclaration.sol";
+import "./a14_EnumDeclaration.sol";
 
 contract Enums {
     Estatus public status;
